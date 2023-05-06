@@ -55,5 +55,8 @@
                 "Brackets\\Translatable\\TranslatableServiceProvider"
             ]
         }
+    },
+    "branch-alias": {
+        "dev-master": "1.0"
     }
 }
