@@ -54,9 +54,6 @@
             "providers": [
                 "Brackets\\Translatable\\TranslatableServiceProvider"
             ]
-        },
-        "branch-alias": {
-            "dev-master": "2.0-dev"
         }
     }
 }
