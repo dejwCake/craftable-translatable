@@ -37,9 +37,9 @@ class TranslatableFormRequest extends FormRequest
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $standardRules = collect($this->untranslatableRules());
 

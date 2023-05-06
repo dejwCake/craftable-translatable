@@ -19,7 +19,7 @@ class TranslatableProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('translatable', Translatable::class);
     }
@@ -29,7 +29,7 @@ class TranslatableProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['translatable'];
     }
