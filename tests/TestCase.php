@@ -14,17 +14,17 @@ abstract class TestCase extends Orchestra
     /**
      * @var TestModel
      */
-    protected $testModel;
+    protected TestModel $testModel;
 
     /**
      * @var TestRequest
      */
-    protected $testRequest;
+    protected TestRequest $testRequest;
 
     /**
-     * @var TestRequest
+     * @var TestRequestWithRequiredLocales
      */
-    protected $testRequestWithRequiredLocales;
+    protected TestRequestWithRequiredLocales $testRequestWithRequiredLocales;
 
     public function setUp(): void
     {
@@ -42,7 +42,7 @@ abstract class TestCase extends Orchestra
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             TranslatableServiceProvider::class
@@ -52,14 +52,28 @@ abstract class TestCase extends Orchestra
     /**
      * @param Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         if (env('DB_CONNECTION') === 'pgsql') {
             $app['config']->set('database.default', 'pgsql');
             $app['config']->set('database.connections.pgsql', [
                 'driver' => 'pgsql',
-                'host' => 'testing',
+                'host' => 'pgsql',
                 'port' => '5432',
+                'database' => env('DB_DATABASE', 'laravel'),
+                'username' => env('DB_USERNAME', 'root'),
+                'password' => env('DB_PASSWORD', 'bestsecret'),
+                'charset' => 'utf8',
+                'prefix' => '',
+                'schema' => 'public',
+                'sslmode' => 'prefer',
+            ]);
+        } else if (env('DB_CONNECTION') === 'mysql') {
+            $app['config']->set('database.default', 'mysql');
+            $app['config']->set('database.connections.mysql', [
+                'driver' => 'mysql',
+                'host' => 'mysql',
+                'port' => '3306',
                 'database' => env('DB_DATABASE', 'laravel'),
                 'username' => env('DB_USERNAME', 'root'),
                 'password' => env('DB_PASSWORD', 'bestsecret'),
@@ -85,7 +99,7 @@ abstract class TestCase extends Orchestra
     /**
      * @param Application $app
      */
-    protected function setUpDatabase($app)
+    protected function setUpDatabase(Application $app): void
     {
         /** @var Builder $schema */
         $schema = $app['db']->connection()->getSchemaBuilder();
