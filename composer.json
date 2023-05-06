@@ -1,5 +1,5 @@
 {
-    "name": "dejwcake/translatable",
+    "name": "dejwcake/craftable-translatable",
     "description": "Make your Eloquent models and other content translated into multiple languages",
     "keywords": [
         "translations",
