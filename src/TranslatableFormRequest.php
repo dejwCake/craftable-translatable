@@ -25,7 +25,7 @@ class TranslatableFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        $standardRules = collect($this->untranslatableRules());
+        $standardRules = new Collection($this->untranslatableRules());
 
         $rules = $this->prepareLocalesForRules()->flatMap(fn ($locale) => (new Collection(
             $this->translatableRules($locale['locale']),
