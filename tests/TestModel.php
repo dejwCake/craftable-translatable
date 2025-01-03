@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\Traits\HasTranslations;
@@ -9,27 +11,13 @@ class TestModel extends Model
 {
     use HasTranslations;
 
-    /**
-     * @var string
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint
-     */
-    protected $table = 'test_models';
+    protected string $table = 'test_models';
 
-    /**
-     * @var array<string>
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint
-     */
-    protected $guarded = [];
+    /** @var array<string> */
+    protected array $guarded = [];
 
-    /**
-     * @var bool
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint
-     */
-    public $timestamps = false;
+    public bool $timestamps = false;
 
-
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     public array $translatable = ['translatable_name'];
 }

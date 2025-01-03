@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable;
 
 use Brackets\Translatable\Facades\Translatable;
@@ -30,10 +32,7 @@ class TranslatableServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../install-stubs/config/translatable.php',
-            'translatable'
-        );
+        $this->mergeConfigFrom(__DIR__ . '/../install-stubs/config/translatable.php', 'translatable');
 
         $loader = AliasLoader::getInstance();
         $loader->alias('Translatable', Translatable::class);

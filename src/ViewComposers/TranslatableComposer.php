@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\ViewComposers;
 
 use Brackets\Translatable\Facades\Translatable;

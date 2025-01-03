@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\TranslatableFormRequest;
@@ -25,7 +27,7 @@ class TestRequestWithRequiredLocales extends TranslatableFormRequest
         ];
     }
 
-    public function defineRequiredLocales() : Collection
+    public function defineRequiredLocales(): Collection
     {
         return new Collection(['en', 'de']);
     }

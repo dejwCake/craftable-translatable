@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\TranslatableFormRequest;
@@ -16,6 +18,7 @@ class TestRequest extends TranslatableFormRequest
 
     /**
      * define all the rules for translatable columns
+     *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
      */
     public function translatableRules(string $locale): array

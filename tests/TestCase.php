@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\TranslatableServiceProvider;
@@ -29,14 +31,14 @@ abstract class TestCase extends Orchestra
 
     /**
      * @param Application $app
-     *
      * @return array<class-string>
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
      */
     protected function getPackageProviders($app): array
     {
         return [
-            TranslatableServiceProvider::class
+            TranslatableServiceProvider::class,
         ];
     }
 
@@ -90,10 +92,10 @@ abstract class TestCase extends Orchestra
 
     protected function setUpDatabase(Application $app): void
     {
-        /** @var Builder $schema */
         $schema = $app['db']->connection()->getSchemaBuilder();
+        \assert($schema instanceof Builder);
         $schema->dropIfExists('test_models');
-        $schema->create('test_models', function (Blueprint $table) {
+        $schema->create('test_models', static function (Blueprint $table): void {
             $table->increments('id');
             $table->text('translatable_name');
             $table->string('regular_name');
@@ -105,7 +107,7 @@ abstract class TestCase extends Orchestra
                 'de' => 'DE Name',
                 'fr' => 'FR Name',
             ],
-            'regular_name' => 'Regular Name'
+            'regular_name' => 'Regular Name',
         ]);
     }
 }

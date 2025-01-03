@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Providers;
 
 use Brackets\Translatable\Translatable;

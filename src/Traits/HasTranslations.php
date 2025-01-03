@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Traits;
 
 use Illuminate\Database\Eloquent\JsonEncodingException;
@@ -19,6 +21,7 @@ trait HasTranslations
      * @param string $key
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint
      */
     public function getAttributeValue($key)
     {
@@ -55,9 +58,9 @@ trait HasTranslations
     public function toArray(): array
     {
         $array = parent::toArray();
-        $arrayTranslatable = (new Collection($this->getTranslatableAttributes()))->mapWithKeys(function ($attribute) {
-            return [$attribute => $this->getAttributeValue($attribute)];
-        });
+        $arrayTranslatable = (new Collection($this->getTranslatableAttributes()))->mapWithKeys(
+            fn ($attribute) => [$attribute => $this->getAttributeValue($attribute)],
+        );
 
         return array_merge($array, $arrayTranslatable->toArray());
     }
@@ -92,13 +95,12 @@ trait HasTranslations
      * Translated columns are returned as arrays.
      *
      * @throws JsonEncodingException
-     *
      */
     public function toJsonAllLocales(int $options = 0): string
     {
         $json = json_encode($this->toArrayAllLocales(), $options);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if (json_last_error() !== JSON_ERROR_NONE) {
             throw JsonEncodingException::forModel($this, json_last_error_msg());
         }
 

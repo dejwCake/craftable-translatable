@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable\Tests\Feature;
 
 use Brackets\Translatable\Tests\TestCase;

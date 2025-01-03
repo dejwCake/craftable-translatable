@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Brackets\Translatable;
 
 use Illuminate\Support\Collection;
@@ -12,8 +14,8 @@ class Translatable
      */
     public function getLocales(): Collection
     {
-        return (new Collection((array) Config::get('translatable.locales')))->map(static function ($val, $key) {
-            return is_array($val) ? $key : $val;
-        });
+        return (new Collection((array) Config::get('translatable.locales')))->map(
+            static fn ($val, $key) => is_array($val) ? $key : $val,
+        );
     }
 }
