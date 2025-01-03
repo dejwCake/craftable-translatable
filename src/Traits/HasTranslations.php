@@ -3,6 +3,7 @@
 namespace Brackets\Translatable\Traits;
 
 use Illuminate\Database\Eloquent\JsonEncodingException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Spatie\Translatable\HasTranslations as ParentHasTranslations;
 
@@ -10,7 +11,7 @@ trait HasTranslations
 {
     use ParentHasTranslations;
 
-    protected $locale;
+    protected string $locale;
 
     /**
      * Get an attribute from the model.
@@ -31,20 +32,16 @@ trait HasTranslations
      * Set the locale of the model
      *
      * This locale would be used when working with translated attributes
-     *
-     * @param $locale
      */
-    public function setLocale($locale): void
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }
 
     /**
      * Get current locale of the model
-     *
-     * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale ?? App::getLocale();
     }
@@ -59,9 +56,10 @@ trait HasTranslations
     public function toArray(): array
     {
         $array = parent::toArray();
-        collect($this->getTranslatableAttributes())->map(function ($attribute) use (&$array) {
+        (new Collection($this->getTranslatableAttributes()))->map(function ($attribute) use (&$array) {
             $array[$attribute] = $this->getAttributeValue($attribute);
         });
+
         return $array;
     }
 
@@ -84,7 +82,6 @@ trait HasTranslations
      *
      * @param int $options
      * @throws JsonEncodingException
-     * @return string
      *
      */
     public function toJson($options = 0): string
@@ -97,12 +94,10 @@ trait HasTranslations
      *
      * Translated columns are returned as arrays.
      *
-     * @param int $options
      * @throws JsonEncodingException
-     * @return string
      *
      */
-    public function toJsonAllLocales($options = 0): string
+    public function toJsonAllLocales(int $options = 0): string
     {
         $json = json_encode($this->toArrayAllLocales(), $options);
 

@@ -7,10 +7,9 @@ use Brackets\Translatable\Translatable;
 
 class TranslatableTest extends TestCase
 {
-    /** @test */
-    public function package_can_define_used_locales()
+    public function testPackageCanDefineUsedLocales(): void
     {
         $translatable = app(Translatable::class);
-        $this->assertEquals(collect(['en', 'de', 'fr']), $translatable->getLocales());
+        self::assertEquals(collect(['en', 'de', 'fr']), $translatable->getLocales());
     }
 }

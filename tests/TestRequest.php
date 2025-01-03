@@ -7,7 +7,7 @@ use Brackets\Translatable\TranslatableFormRequest;
 class TestRequest extends TranslatableFormRequest
 {
     // define all the regular rules
-    public function untranslatableRules()
+    public function untranslatableRules(): array
     {
         return [
             'published_at' => ['required', 'datetime'],
@@ -15,7 +15,7 @@ class TestRequest extends TranslatableFormRequest
     }
 
     // define all the rules for translatable columns
-    public function translatableRules($locale)
+    public function translatableRules($locale): array
     {
         return [
             'title' => ['required', 'string'],

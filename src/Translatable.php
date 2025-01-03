@@ -14,7 +14,7 @@ class Translatable
      */
     public function getLocales(): Collection
     {
-        return collect((array)Config::get('translatable.locales'))->map(static function ($val, $key) {
+        return (new Collection((array) Config::get('translatable.locales')))->map(static function ($val, $key) {
             return is_array($val) ? $key : $val;
         });
     }

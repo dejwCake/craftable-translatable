@@ -7,14 +7,14 @@ use Illuminate\Support\Collection;
 
 class TestRequestWithRequiredLocales extends TranslatableFormRequest
 {
-    public function untranslatableRules()
+    public function untranslatableRules(): array
     {
         return [
             'published_at' => ['required', 'datetime'],
         ];
     }
 
-    public function translatableRules($locale)
+    public function translatableRules($locale): array
     {
         return [
             'title' => ['required', 'string'],
@@ -24,6 +24,6 @@ class TestRequestWithRequiredLocales extends TranslatableFormRequest
 
     public function defineRequiredLocales() : Collection
     {
-        return collect(['en', 'de']);
+        return new Collection(['en', 'de']);
     }
 }

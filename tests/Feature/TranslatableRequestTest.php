@@ -6,10 +6,9 @@ use Brackets\Translatable\Tests\TestCase;
 
 class TranslatableRequestTest extends TestCase
 {
-    /** @test */
-    public function request_can_have_translatable_columns()
+    public function testRequestCanHaveTranslatableColumns(): void
     {
-        $this->assertEquals([
+        self::assertEquals([
             'published_at' => ['required', 'datetime'],
             'title.en' => ['required', 'string'],
             'title.de' => ['required', 'string'],
@@ -20,10 +19,9 @@ class TranslatableRequestTest extends TestCase
         ], $this->testRequest->rules());
     }
 
-    /** @test */
-    public function request_can_override_required_locales()
+    public function testRequestCanOverrideRequiredLocales(): void
     {
-        $this->assertEquals([
+        self::assertEquals([
             'published_at' => ['required', 'datetime'],
             'title.en' => ['required', 'string'],
             'title.de' => ['required', 'string'],

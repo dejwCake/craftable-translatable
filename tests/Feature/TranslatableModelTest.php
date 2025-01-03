@@ -6,44 +6,40 @@ use Brackets\Translatable\Tests\TestCase;
 
 class TranslatableModelTest extends TestCase
 {
-    /** @test */
-    public function model_by_default_works_only_with_default_locale()
+    public function testModelByDefaultWorksOnlyWithDefaultLocale(): void
     {
-        $this->assertEquals('EN Name', $this->testModel->translatable_name);
-        $this->assertEquals([
+        self::assertEquals('EN Name', $this->testModel->translatable_name);
+        self::assertEquals([
             'id' => 1,
             'translatable_name' => 'EN Name',
             'regular_name' => 'Regular Name',
         ], $this->testModel->toArray());
     }
 
-    /** @test */
-    public function you_can_set_locale()
+    public function testYouCanSetLocale(): void
     {
-        $this->assertEquals('en', $this->testModel->getLocale());
+        self::assertEquals('en', $this->testModel->getLocale());
         $this->testModel->setLocale('fr');
-        $this->assertEquals('fr', $this->testModel->getLocale());
+        self::assertEquals('fr', $this->testModel->getLocale());
     }
 
-    /** @test */
-    public function you_can_change_locale_model_works_with()
+    public function testYouCanChangeLocaleModelWorksWith(): void
     {
         $this->testModel->setLocale('fr');
-        $this->assertEquals('FR Name', $this->testModel->translatable_name);
-        $this->assertEquals([
+        self::assertEquals('FR Name', $this->testModel->translatable_name);
+        self::assertEquals([
             'id' => 1,
             'translatable_name' => 'FR Name',
             'regular_name' => 'Regular Name',
         ], $this->testModel->toArray());
-        $this->assertEquals(json_encode([
+        self::assertEquals(json_encode([
             'id' => 1,
             'translatable_name' => 'FR Name',
             'regular_name' => 'Regular Name',
         ]), $this->testModel->toJson());
     }
 
-    /** @test */
-    public function changing_locale_does_not_affect_on_allLocales_methods()
+    public function testChangingLocaleDoesNotAffectOnAllLocalesMethods(): void
     {
         $sameOutput = [
             'id' => 1,
@@ -55,12 +51,12 @@ class TranslatableModelTest extends TestCase
             'regular_name' => 'Regular Name',
         ];
 
-        $this->assertEquals($sameOutput, $this->testModel->toArrayAllLocales());
-        $this->assertEquals(json_encode($sameOutput), $this->testModel->toJsonAllLocales());
+        self::assertEquals($sameOutput, $this->testModel->toArrayAllLocales());
+        self::assertEquals(json_encode($sameOutput), $this->testModel->toJsonAllLocales());
 
         $this->testModel->setLocale('fr');
 
-        $this->assertEquals($sameOutput, $this->testModel->toArrayAllLocales());
-        $this->assertEquals(json_encode($sameOutput), $this->testModel->toJsonAllLocales());
+        self::assertEquals($sameOutput, $this->testModel->toArrayAllLocales());
+        self::assertEquals(json_encode($sameOutput), $this->testModel->toJsonAllLocales());
     }
 }

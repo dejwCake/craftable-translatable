@@ -3,21 +3,13 @@
 namespace Brackets\Translatable\Providers;
 
 use Brackets\Translatable\Translatable;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class TranslatableProvider extends ServiceProvider
+class TranslatableProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -27,7 +19,7 @@ class TranslatableProvider extends ServiceProvider
     /**
      * Get the services provided by the provider.
      *
-     * @return array
+     * @return array<int, string>
      */
     public function provides(): array
     {

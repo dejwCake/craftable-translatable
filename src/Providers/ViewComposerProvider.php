@@ -10,8 +10,6 @@ class ViewComposerProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -23,11 +21,9 @@ class ViewComposerProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+        //do nothing
     }
 }

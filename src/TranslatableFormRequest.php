@@ -8,13 +8,10 @@ use Illuminate\Support\Collection;
 
 class TranslatableFormRequest extends FormRequest
 {
-
     /**
      * Define what locales should be required in store/update requests
      *
      * By default all locales are required
-     *
-     * @return Collection
      */
     public function defineRequiredLocales() : Collection
     {
@@ -22,9 +19,9 @@ class TranslatableFormRequest extends FormRequest
     }
 
     /**
-     * @return mixed
+     * @return Collection<array<string, string|bool>>
      */
-    private function prepareLocalesForRules()
+    private function prepareLocalesForRules(): Collection
     {
         $required = $this->defineRequiredLocales();
 
@@ -37,14 +34,14 @@ class TranslatableFormRequest extends FormRequest
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
     public function rules(): array
     {
         $standardRules = collect($this->untranslatableRules());
 
         $rules = $this->prepareLocalesForRules()->flatMap(function ($locale) {
-            return collect($this->translatableRules($locale['locale']))->mapWithKeys(static function ($rule, $ruleKey) use ($locale) {
+            return (new Collection($this->translatableRules($locale['locale'])))->mapWithKeys(static function ($rule, $ruleKey) use ($locale) {
                 if (!$locale['required']) {
                     // TODO add support for rules defined via custom Rule classes
 
@@ -55,6 +52,7 @@ class TranslatableFormRequest extends FormRequest
                         $rule = str_replace('required', 'nullable', $rule);
                     }
                 }
+
                 return [$ruleKey.'.'.$locale['locale'] => is_array($rule) ? array_values($rule) : $rule];
             });
         })->merge($standardRules);
@@ -62,12 +60,12 @@ class TranslatableFormRequest extends FormRequest
         return $rules->toArray();
     }
 
-    public function untranslatableRules()
+    public function untranslatableRules(): array
     {
         return [];
     }
 
-    public function translatableRules($locale)
+    public function translatableRules(string $locale): array
     {
         return [];
     }
