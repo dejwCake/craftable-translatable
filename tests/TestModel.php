@@ -32,9 +32,6 @@ class TestModel extends Model
      */
     public $timestamps = false;
 
-    /**
-     * @var array<string>
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-     */
+    /** @var array<string> */
     public array $translatable = ['translatable_name'];
 }
