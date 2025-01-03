@@ -1,2 +1,31 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Out of 37 possible return types, only 35 \\- 94\\.5 %% actually have it\\. Add more return types to get over 99 %%$#"
+			count: 1
+			path: src/Facades/Translatable.php
+
+		-
+			message: "#^Out of 19 possible param types, only 8 \\- 42\\.1 %% actually have it\\. Add more param types to get over 99 %%$#"
+			count: 2
+			path: src/Translatable.php
+
+		-
+			message: "#^Out of 19 possible param types, only 8 \\- 42\\.1 %% actually have it\\. Add more param types to get over 99 %%$#"
+			count: 4
+			path: src/TranslatableFormRequest.php
+
+		-
+			message: "#^Out of 19 possible param types, only 8 \\- 42\\.1 %% actually have it\\. Add more param types to get over 99 %%$#"
+			count: 2
+			path: tests/TestCase.php
+
+		-
+			message: "#^Out of 19 possible param types, only 8 \\- 42\\.1 %% actually have it\\. Add more param types to get over 99 %%$#"
+			count: 3
+			path: tests/TestModel.php
+
+		-
+			message: "#^Out of 37 possible return types, only 35 \\- 94\\.5 %% actually have it\\. Add more return types to get over 99 %%$#"
+			count: 1
+			path: tests/TestModel.php

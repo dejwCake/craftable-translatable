@@ -7,17 +7,34 @@ namespace Brackets\Translatable\Tests;
 use Brackets\Translatable\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $translatable_name
+ */
 class TestModel extends Model
 {
     use HasTranslations;
 
-    protected string $table = 'test_models';
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
+    protected $table = 'test_models';
 
-    /** @var array<string> */
-    protected array $guarded = [];
+    /**
+     * @var array<string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
+    protected $guarded = [];
 
-    public bool $timestamps = false;
+    /**
+     * @var bool
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
+    public $timestamps = false;
 
-    /** @var array<string> */
+    /**
+     * @var array<string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     public array $translatable = ['translatable_name'];
 }
