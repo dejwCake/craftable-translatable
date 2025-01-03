@@ -1,10 +1,10 @@
 <?php
 
-namespace Brackets\Translatable\Test\Feature;
+namespace Brackets\Translatable\Tests\Feature;
 
-use Brackets\Translatable\Test\TestCase;
+use Brackets\Translatable\Tests\TestCase;
 
-class TranslatableRequestTestTest extends TestCase
+class TranslatableRequestTest extends TestCase
 {
     /** @test */
     public function request_can_have_translatable_columns()

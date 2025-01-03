@@ -1,6 +1,6 @@
 <?php
 
-namespace Brackets\Translatable\Test;
+namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;

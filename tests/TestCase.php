@@ -1,6 +1,6 @@
 <?php
 
-namespace Brackets\Translatable\Test;
+namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\TranslatableServiceProvider;
 use Illuminate\Database\Schema\Blueprint;

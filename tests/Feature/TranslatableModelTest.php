@@ -1,8 +1,8 @@
 <?php
 
-namespace Brackets\Translatable\Test\Feature;
+namespace Brackets\Translatable\Tests\Feature;
 
-use Brackets\Translatable\Test\TestCase;
+use Brackets\Translatable\Tests\TestCase;
 
 class TranslatableModelTest extends TestCase
 {

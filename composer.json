@@ -47,7 +47,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Brackets\\Translatable\\Test\\": "tests"
+            "Brackets\\Translatable\\Tests\\": "tests"
         }
     },
     "extra": {

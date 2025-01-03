@@ -1,6 +1,6 @@
 <?php
 
-namespace Brackets\Translatable\Test;
+namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\TranslatableFormRequest;
 use Illuminate\Support\Collection;
