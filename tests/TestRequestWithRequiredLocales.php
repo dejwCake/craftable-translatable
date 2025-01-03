@@ -14,7 +14,10 @@ class TestRequestWithRequiredLocales extends TranslatableFormRequest
         ];
     }
 
-    public function translatableRules($locale): array
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+     */
+    public function translatableRules(string $locale): array
     {
         return [
             'title' => ['required', 'string'],

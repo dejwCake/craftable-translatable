@@ -13,6 +13,7 @@ class Translatable extends Facade
      * Get the registered name of the component.
      *
      * @return string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      */
     protected static function getFacadeAccessor()
     {

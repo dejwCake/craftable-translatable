@@ -14,8 +14,11 @@ class TestRequest extends TranslatableFormRequest
         ];
     }
 
-    // define all the rules for translatable columns
-    public function translatableRules($locale): array
+    /**
+     * define all the rules for translatable columns
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+     */
+    public function translatableRules(string $locale): array
     {
         return [
             'title' => ['required', 'string'],

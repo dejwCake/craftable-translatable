@@ -9,8 +9,6 @@ class Translatable
 {
     /**
      * Attempt to get all locales.
-     *
-     * @return Collection
      */
     public function getLocales(): Collection
     {

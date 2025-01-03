@@ -17,7 +17,8 @@ trait HasTranslations
      * Get an attribute from the model.
      *
      * @param string $key
-     * @return mixed
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      */
     public function getAttributeValue($key)
     {
@@ -50,25 +51,21 @@ trait HasTranslations
      * Convert the model instance to an array.
      *
      * By default, translations of only current locale of the model of each translated attribute is returned
-     *
-     * @return array
      */
     public function toArray(): array
     {
         $array = parent::toArray();
-        (new Collection($this->getTranslatableAttributes()))->map(function ($attribute) use (&$array) {
-            $array[$attribute] = $this->getAttributeValue($attribute);
+        $arrayTranslatable = (new Collection($this->getTranslatableAttributes()))->mapWithKeys(function ($attribute) {
+            return [$attribute => $this->getAttributeValue($attribute)];
         });
 
-        return $array;
+        return array_merge($array, $arrayTranslatable->toArray());
     }
 
     /**
      * Convert the model instance to an array.
      *
      * Translated columns are returned as arrays.
-     *
-     * @return array
      */
     public function toArrayAllLocales(): array
     {
@@ -82,7 +79,7 @@ trait HasTranslations
      *
      * @param int $options
      * @throws JsonEncodingException
-     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function toJson($options = 0): string
     {

@@ -10,20 +10,10 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-
-    /**
-     * @var TestModel
-     */
     protected TestModel $testModel;
 
-    /**
-     * @var TestRequest
-     */
     protected TestRequest $testRequest;
 
-    /**
-     * @var TestRequestWithRequiredLocales
-     */
     protected TestRequestWithRequiredLocales $testRequestWithRequiredLocales;
 
     public function setUp(): void
@@ -33,14 +23,15 @@ abstract class TestCase extends Orchestra
         $this->setUpDatabase($this->app);
 
         $this->testModel = TestModel::first();
-        $this->testRequest = new TestRequest;
-        $this->testRequestWithRequiredLocales = new TestRequestWithRequiredLocales;
+        $this->testRequest = new TestRequest();
+        $this->testRequestWithRequiredLocales = new TestRequestWithRequiredLocales();
     }
 
     /**
      * @param Application $app
      *
-     * @return array
+     * @return array<class-string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     protected function getPackageProviders($app): array
     {
@@ -51,6 +42,7 @@ abstract class TestCase extends Orchestra
 
     /**
      * @param Application $app
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     protected function getEnvironmentSetUp($app): void
     {
@@ -96,9 +88,6 @@ abstract class TestCase extends Orchestra
         $app['config']->set('translatable.locales', ['en', 'de', 'fr']);
     }
 
-    /**
-     * @param Application $app
-     */
     protected function setUpDatabase(Application $app): void
     {
         /** @var Builder $schema */
