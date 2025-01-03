@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Brackets\Translatable\Tests;
 
+use Brackets\Translatable\Models\WithTranslations;
 use Brackets\Translatable\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $translatable_name
  */
-class TestModel extends Model
+class TestModel extends Model implements WithTranslations
 {
     use HasTranslations;
 
