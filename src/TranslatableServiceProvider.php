@@ -12,9 +12,6 @@ use Illuminate\Support\ServiceProvider;
 
 class TranslatableServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -27,9 +24,6 @@ class TranslatableServiceProvider extends ServiceProvider
         $this->app->register(TranslatableProvider::class);
     }
 
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../install-stubs/config/translatable.php', 'translatable');
