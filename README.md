@@ -8,6 +8,14 @@ Translatable makes your content translatable in defined languages (locales). To 
 
 You can find full documentation at https://docs.getcraftable.com/#/translatable
 
+## Composer
+
+To develop this package, you need to have composer installed. To run composer command use:
+
+```shell
+  docker compose run -it --rm test composer update
+```
+
 ## Run tests
 
 To run tests use this docker environment.
