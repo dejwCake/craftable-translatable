@@ -1,7 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Out of 37 possible return types, only 35 \\- 94\\.5 %% actually have it\\. Add more return types to get over 99 %%$#"
+			message: "#^Out of 38 possible return types, only 36 \\- 94\\.7 %% actually have it\\. Add more return types to get over 99 %%$#"
 			count: 1
 			path: src/Facades/Translatable.php
 
@@ -26,6 +26,6 @@ parameters:
 			path: tests/TestModel.php
 
 		-
-			message: "#^Out of 37 possible return types, only 35 \\- 94\\.5 %% actually have it\\. Add more return types to get over 99 %%$#"
+			message: "#^Out of 38 possible return types, only 36 \\- 94\\.7 %% actually have it\\. Add more return types to get over 99 %%$#"
 			count: 1
 			path: tests/TestModel.php
