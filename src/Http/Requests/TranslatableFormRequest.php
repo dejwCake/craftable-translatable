@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Brackets\Translatable;
+namespace Brackets\Translatable\Http\Requests;
 
-use Brackets\Translatable\Facades\Translatable;
+use Brackets\Translatable\Translatable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
@@ -13,11 +13,13 @@ class TranslatableFormRequest extends FormRequest
     /**
      * Define what locales should be required in store/update requests
      *
-     * By default all locales are required
+     * By default, all locales are required
      */
     public function defineRequiredLocales(): Collection
     {
-        return Translatable::getLocales();
+        $translatable = app(Translatable::class);
+
+        return $translatable->getLocales();
     }
 
     /**
@@ -62,11 +64,12 @@ class TranslatableFormRequest extends FormRequest
     /**
      * @return Collection<array<string, string|bool>>
      */
-    private function prepareLocalesForRules(): Collection
+    protected function prepareLocalesForRules(): Collection
     {
         $required = $this->defineRequiredLocales();
+        $translatable = app(Translatable::class);
 
-        return Translatable::getLocales()->map(static fn ($locale) => [
+        return $translatable->getLocales()->map(static fn ($locale) => [
                 'locale' => $locale,
                 'required' => $required->contains($locale),
             ]);

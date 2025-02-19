@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Brackets\Translatable\Providers;
 
 use Brackets\Translatable\ViewComposers\TranslatableComposer;
-use Illuminate\Support\Facades\View;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerProvider extends ServiceProvider
@@ -15,7 +15,8 @@ class ViewComposerProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', TranslatableComposer::class);
+        $viewFactory = $this->app->get(Factory::class);
+        $viewFactory->composer('*', TranslatableComposer::class);
     }
 
     /**

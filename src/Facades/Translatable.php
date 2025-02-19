@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Brackets\Translatable\Translatable
  * @method static Collection getLocales()
+ * @deprecated We do not want to support Facades anymore. Please use dependency injection instead.
  */
 class Translatable extends Facade
 {

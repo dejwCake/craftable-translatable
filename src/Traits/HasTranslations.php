@@ -6,7 +6,6 @@ namespace Brackets\Translatable\Traits;
 
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App;
 use Spatie\Translatable\HasTranslations as ParentHasTranslations;
 
 trait HasTranslations
@@ -47,7 +46,7 @@ trait HasTranslations
      */
     public function getLocale(): string
     {
-        return $this->locale ?? App::getLocale();
+        return $this->locale ?? app()->getLocale();
     }
 
     /**

@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Brackets\Translatable\ViewComposers;
 
-use Brackets\Translatable\Facades\Translatable;
+use Brackets\Translatable\Translatable;
 use Illuminate\Contracts\View\View;
 
-class TranslatableComposer
+final readonly class TranslatableComposer
 {
+    public function __construct(private Translatable $translatable)
+    {
+    }
+
     /**
      * Bind data to the view.
      */
     public function compose(View $view): void
     {
-        $view->with('locales', Translatable::getLocales());
+        $view->with('locales', $this->translatable->getLocales());
     }
 }

@@ -1,16 +1,25 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Out of 19 possible param types, only 8 \- 42\.1 %% actually have it\. Add more param types to get over 75 %%$#'
+			message: '#^Out of 21 possible param types, only 10 \- 47\.6 %% actually have it\. Add more param types to get over 75 %%$#'
+			identifier: typeCoverage.paramTypeCoverage
+			count: 4
+			path: src/Http/Requests/TranslatableFormRequest.php
+
+		-
+			message: '#^Out of 21 possible param types, only 10 \- 47\.6 %% actually have it\. Add more param types to get over 75 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: src/Translatable.php
 
 		-
-			message: '#^Out of 19 possible param types, only 8 \- 42\.1 %% actually have it\. Add more param types to get over 75 %%$#'
-			identifier: typeCoverage.paramTypeCoverage
-			count: 4
-			path: src/TranslatableFormRequest.php
+			message: '''
+				#^Fetching class constant class of deprecated class Brackets\\Translatable\\Facades\\Translatable\:
+				We do not want to support Facades anymore\. Please use dependency injection instead\.$#
+			'''
+			identifier: classConstant.deprecatedClass
+			count: 1
+			path: src/TranslatableServiceProvider.php
 
 		-
 			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
@@ -31,13 +40,13 @@ parameters:
 			path: tests/TestCase.php
 
 		-
-			message: '#^Out of 19 possible param types, only 8 \- 42\.1 %% actually have it\. Add more param types to get over 75 %%$#'
+			message: '#^Out of 21 possible param types, only 10 \- 47\.6 %% actually have it\. Add more param types to get over 75 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: tests/TestCase.php
 
 		-
-			message: '#^Out of 19 possible param types, only 8 \- 42\.1 %% actually have it\. Add more param types to get over 75 %%$#'
+			message: '#^Out of 21 possible param types, only 10 \- 47\.6 %% actually have it\. Add more param types to get over 75 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/TestModel.php

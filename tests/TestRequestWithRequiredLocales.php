@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Brackets\Translatable\Tests;
 
-use Brackets\Translatable\TranslatableFormRequest;
+use Brackets\Translatable\Http\Requests\TranslatableFormRequest;
 use Illuminate\Support\Collection;
 
 class TestRequestWithRequiredLocales extends TranslatableFormRequest
