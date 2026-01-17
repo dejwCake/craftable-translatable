@@ -2,7 +2,9 @@
 composer.lock
 .idea/
 .DS_Store
+.run
 .phpunit.result.cache
 .phpunit.cache
 .phpcs.cache
 .phpstan.cache
+docker-compose.override.yml
