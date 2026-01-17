@@ -6,6 +6,7 @@ Translatable makes your content easily translatable into the locales (languages)
 - provides a `WithTranslations` interface that marks your Eloquent model as translatable (the trait will also work without this interface),
 - provides a `TranslatableFormRequest` class you can use as a base for your form request classes, simplifying the definition of validation rules for translatable data.
 
+## Documentation
 You can find full documentation at https://docs.getcraftable.com/#/translatable
 
 ## How to develop this project
