@@ -15,20 +15,25 @@ class TranslatableServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../install-stubs/config/translatable.php' => config_path('translatable.php'),
-            ], 'config');
+            $this->publish();
         }
     }
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../install-stubs/config/translatable.php', 'translatable');
+        $this->mergeConfigFrom(__DIR__ . '/../config/translatable.php', 'translatable');
 
         $this->app->register(ViewComposerProvider::class);
         $this->app->register(TranslatableProvider::class);
 
         $loader = AliasLoader::getInstance();
         $loader->alias('Translatable', Translatable::class);
+    }
+
+    private function publish(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../config/translatable.php' => config_path('translatable.php'),
+        ], 'config');
     }
 }
