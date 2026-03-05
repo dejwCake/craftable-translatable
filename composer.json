@@ -54,10 +54,11 @@
             "providers": [
                 "Brackets\\Translatable\\TranslatableServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-1.0": "1.0-dev",
+            "dev-main": "1.0-dev",
+            "dev-v2-dev": "2.0-dev"
         }
-    },
-    "branch-alias": {
-        "dev-1.0": "1.0-dev",
-        "dev-main": "1.0-dev"
     }
 }
