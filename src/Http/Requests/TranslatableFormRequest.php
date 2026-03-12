@@ -44,7 +44,10 @@ class TranslatableFormRequest extends FormRequest
                     }
                 }
 
-                return [$ruleKey . '.' . $locale['locale'] => is_array($rule) ? array_values($rule) : $rule];
+                return [
+                    sprintf('%s.%s', $ruleKey, $locale['locale'])
+                        => is_array($rule) ? array_values($rule) : $rule
+                ];
         }))->merge($standardRules);
 
         return $rules->toArray();
