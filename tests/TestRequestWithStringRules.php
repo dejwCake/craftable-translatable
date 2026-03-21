@@ -9,6 +9,7 @@ use Override;
 
 class TestRequestWithStringRules extends TranslatableFormRequest
 {
+    /** @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter */
     #[Override]
     public function translatableRules(string $locale): array
     {

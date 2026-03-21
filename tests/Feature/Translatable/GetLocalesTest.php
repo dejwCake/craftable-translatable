@@ -20,6 +20,7 @@ final class GetLocalesTest extends TestCase
     public function testGetLocalesHandlesNestedArrayConfig(): void
     {
         $config = $this->app->make(Config::class);
+        //phpcs:ignore SlevomatCodingStandard.Arrays.DisallowPartiallyKeyed.DisallowedPartiallyKeyed
         $config->set('translatable.locales', ['en', 'de' => ['DE', 'AT']]);
 
         $translatable = $this->app->make(Translatable::class);

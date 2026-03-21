@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $translatable_name
+ * @property string $regular_name
  */
 class TestModel extends Model implements WithTranslations
 {
