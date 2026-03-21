@@ -12,7 +12,7 @@ jobs:
     name: PHPCS
     runs-on: ubuntu-latest
     container:
-      image: dejwcake/phpqa8.5:2
+      image: dejwcake/phpqa8.5:1
     steps:
       - uses: actions/checkout@v5
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -23,7 +23,7 @@ jobs:
     name: PHPCS Compatibility
     runs-on: ubuntu-latest
     container:
-      image: dejwcake/phpqa8.5:2
+      image: dejwcake/phpqa8.5:1
     steps:
       - uses: actions/checkout@v5
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -34,7 +34,7 @@ jobs:
     name: PHPStan
     runs-on: ubuntu-latest
     container:
-      image: dejwcake/phpqa8.5:2
+      image: dejwcake/phpqa8.5:1
     steps:
       - uses: actions/checkout@v5
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -45,7 +45,7 @@ jobs:
     name: PHPMD
     runs-on: ubuntu-latest
     container:
-      image: dejwcake/phpqa8.5:2
+      image: dejwcake/phpqa8.5:1
     steps:
       - uses: actions/checkout@v5
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
