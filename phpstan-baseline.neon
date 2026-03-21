@@ -13,18 +13,6 @@ parameters:
 			path: src/Translatable.php
 
 		-
-			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
-			identifier: function.alreadyNarrowedType
-			count: 1
-			path: tests/TestCase.php
-
-		-
-			message: '#^Instanceof between Illuminate\\Database\\Schema\\Builder and Illuminate\\Database\\Schema\\Builder will always evaluate to true\.$#'
-			identifier: instanceof.alwaysTrue
-			count: 1
-			path: tests/TestCase.php
-
-		-
 			message: '#^Out of 29 possible param types, only 17 \- 58\.6 %% actually have it\. Add more param types to get over 75 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2

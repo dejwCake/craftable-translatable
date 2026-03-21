@@ -6,6 +6,7 @@ namespace Brackets\Translatable\Traits;
 
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Support\Collection;
+use Override;
 use Spatie\Translatable\HasTranslations as ParentHasTranslations;
 
 trait HasTranslations
@@ -18,10 +19,10 @@ trait HasTranslations
      * Get an attribute from the model.
      *
      * @param string $key
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint
      */
+    #[Override]
     public function getAttributeValue($key)
     {
         if (!$this->isTranslatableAttribute($key)) {
@@ -54,6 +55,7 @@ trait HasTranslations
      *
      * By default, translations of only current locale of the model of each translated attribute is returned
      */
+    #[Override]
     public function toArray(): array
     {
         $array = parent::toArray();
@@ -81,8 +83,8 @@ trait HasTranslations
      *
      * @param int $options
      * @throws JsonEncodingException
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
+    #[Override]
     public function toJson($options = 0): string
     {
         return parent::toJson($options);

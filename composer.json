@@ -2,7 +2,7 @@
     "name": "dejwcake/craftable-translatable",
     "description": "Make your Eloquent models and other content translated into multiple languages",
     "license": "MIT",
-    "type": "project",
+    "type": "library",
     "keywords": [
         "translations",
         "eloquent",
@@ -29,15 +29,15 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.5",
         "ext-json": "*",
-        "laravel/framework": "^12.0",
-        "spatie/laravel-translatable": "^6.11.4"
+        "laravel/framework": "^13.0",
+        "spatie/laravel-translatable": "^6.13"
     },
     "require-dev": {
-        "larastan/larastan": "^3.1",
-        "orchestra/testbench": "^10.0",
-        "phpunit/phpunit": "^11.5.9"
+        "larastan/larastan": "^3.9",
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^13.0"
     },
     "autoload": {
         "psr-4": {
@@ -50,15 +50,15 @@
         }
     },
     "extra": {
-        "laravel": {
-            "providers": [
-                "Brackets\\Translatable\\TranslatableServiceProvider"
-            ]
-        },
         "branch-alias": {
             "dev-1.0": "1.0-dev",
             "dev-main": "1.0-dev",
             "dev-v2-dev": "2.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Brackets\\Translatable\\TranslatableServiceProvider"
+            ]
         }
     }
 }

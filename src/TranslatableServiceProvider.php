@@ -7,6 +7,7 @@ namespace Brackets\Translatable;
 use Brackets\Translatable\Providers\TranslatableProvider;
 use Brackets\Translatable\Providers\ViewComposerProvider;
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 final class TranslatableServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,7 @@ final class TranslatableServiceProvider extends ServiceProvider
         }
     }
 
+    #[Override]
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/translatable.php', 'translatable');

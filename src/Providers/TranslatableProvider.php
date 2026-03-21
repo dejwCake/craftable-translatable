@@ -7,12 +7,14 @@ namespace Brackets\Translatable\Providers;
 use Brackets\Translatable\Translatable;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 final class TranslatableProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register the service provider.
      */
+    #[Override]
     public function register(): void
     {
         $this->app->singleton('translatable', Translatable::class);
@@ -23,6 +25,7 @@ final class TranslatableProvider extends ServiceProvider implements DeferrablePr
      *
      * @return array<int, string>
      */
+    #[Override]
     public function provides(): array
     {
         return ['translatable'];

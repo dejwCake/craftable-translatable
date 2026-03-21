@@ -12,6 +12,7 @@ use Illuminate\Database\Schema\Builder;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Env;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Override;
 
 use function assert;
 
@@ -23,6 +24,7 @@ abstract class TestCase extends Orchestra
 
     protected TestRequestWithRequiredLocales $testRequestWithRequiredLocales;
 
+    #[Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -38,9 +40,9 @@ abstract class TestCase extends Orchestra
     /**
      * @param Application $app
      * @return array<class-string>
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
      */
+    #[Override]
     protected function getPackageProviders($app): array
     {
         return [
@@ -50,8 +52,8 @@ abstract class TestCase extends Orchestra
 
     /**
      * @param Application $app
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
+    #[Override]
     protected function getEnvironmentSetUp($app): void
     {
         $config = $app->make(Config::class);

@@ -7,6 +7,7 @@ namespace Brackets\Translatable\Providers;
 use Brackets\Translatable\ViewComposers\TranslatableComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 final class ViewComposerProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ final class ViewComposerProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
+    #[Override]
     public function register(): void
     {
         //do nothing

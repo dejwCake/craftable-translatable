@@ -6,9 +6,11 @@ namespace Brackets\Translatable\Tests;
 
 use Brackets\Translatable\Http\Requests\TranslatableFormRequest;
 use Illuminate\Support\Collection;
+use Override;
 
 class TestRequestWithRequiredLocales extends TranslatableFormRequest
 {
+    #[Override]
     public function untranslatableRules(): array
     {
         return [
@@ -19,6 +21,7 @@ class TestRequestWithRequiredLocales extends TranslatableFormRequest
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
      */
+    #[Override]
     public function translatableRules(string $locale): array
     {
         return [
@@ -27,6 +30,7 @@ class TestRequestWithRequiredLocales extends TranslatableFormRequest
         ];
     }
 
+    #[Override]
     public function defineRequiredLocales(): Collection
     {
         return new Collection(['en', 'de']);
