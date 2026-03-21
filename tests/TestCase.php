@@ -24,6 +24,8 @@ abstract class TestCase extends Orchestra
 
     protected TestRequestWithRequiredLocales $testRequestWithRequiredLocales;
 
+    protected TestRequestWithStringRules $testRequestWithStringRules;
+
     #[Override]
     public function setUp(): void
     {
@@ -35,6 +37,7 @@ abstract class TestCase extends Orchestra
         $translatable = $this->app->make(Translatable::class);
         $this->testRequest = new TestRequest($translatable);
         $this->testRequestWithRequiredLocales = new TestRequestWithRequiredLocales($translatable);
+        $this->testRequestWithStringRules = new TestRequestWithStringRules($translatable);
     }
 
     /**
