@@ -6,7 +6,7 @@ namespace Brackets\Translatable\Tests\Feature;
 
 use Brackets\Translatable\Tests\TestCase;
 
-class TranslatableModelTest extends TestCase
+final class TranslatableModelTest extends TestCase
 {
     public function testModelByDefaultWorksOnlyWithDefaultLocale(): void
     {

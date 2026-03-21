@@ -10,6 +10,20 @@ use Illuminate\Support\Collection;
 
 class TranslatableFormRequest extends FormRequest
 {
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint */
+    public function __construct(
+        private readonly Translatable $translatable,
+        array $query = [],
+        array $request = [],
+        array $attributes = [],
+        array $cookies = [],
+        array $files = [],
+        array $server = [],
+        $content = null,
+    ) {
+        parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
+    }
+
     /**
      * Define what locales should be required in store/update requests
      *
@@ -17,9 +31,7 @@ class TranslatableFormRequest extends FormRequest
      */
     public function defineRequiredLocales(): Collection
     {
-        $translatable = app(Translatable::class);
-
-        return $translatable->getLocales();
+        return $this->translatable->getLocales();
     }
 
     /**
@@ -46,7 +58,7 @@ class TranslatableFormRequest extends FormRequest
 
                 return [
                     sprintf('%s.%s', $ruleKey, $locale['locale'])
-                        => is_array($rule) ? array_values($rule) : $rule
+                        => is_array($rule) ? array_values($rule) : $rule,
                 ];
         }))->merge($standardRules);
 
@@ -70,9 +82,8 @@ class TranslatableFormRequest extends FormRequest
     protected function prepareLocalesForRules(): Collection
     {
         $required = $this->defineRequiredLocales();
-        $translatable = app(Translatable::class);
 
-        return $translatable->getLocales()->map(static fn ($locale) => [
+        return $this->translatable->getLocales()->map(static fn ($locale) => [
                 'locale' => $locale,
                 'required' => $required->contains($locale),
             ]);

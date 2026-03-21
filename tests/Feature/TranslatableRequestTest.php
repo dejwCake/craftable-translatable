@@ -6,7 +6,7 @@ namespace Brackets\Translatable\Tests\Feature;
 
 use Brackets\Translatable\Tests\TestCase;
 
-class TranslatableRequestTest extends TestCase
+final class TranslatableRequestTest extends TestCase
 {
     public function testRequestCanHaveTranslatableColumns(): void
     {

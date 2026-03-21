@@ -8,7 +8,7 @@ use Brackets\Translatable\Translatable;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class TranslatableProvider extends ServiceProvider implements DeferrableProvider
+final class TranslatableProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register the service provider.

@@ -7,7 +7,7 @@ namespace Brackets\Translatable;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Support\Collection;
 
-readonly class Translatable
+final readonly class Translatable
 {
     public function __construct(private Config $config)
     {

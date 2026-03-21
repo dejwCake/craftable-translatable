@@ -8,7 +8,7 @@ use Brackets\Translatable\ViewComposers\TranslatableComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
-class ViewComposerProvider extends ServiceProvider
+final class ViewComposerProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
