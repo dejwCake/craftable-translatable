@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Brackets\Translatable\Tests\Feature\Http\Requests\TranslatableFormRequest;
 
+use Brackets\Translatable\Http\Requests\TranslatableFormRequest;
 use Brackets\Translatable\Tests\TestCase;
 use Brackets\Translatable\Translatable;
 
@@ -47,7 +48,7 @@ final class RulesTest extends TestCase
     public function testRulesReturnsOnlyUntranslatableRulesWhenNoTranslatableRules(): void
     {
         $translatable = $this->app->make(Translatable::class);
-        $request = new class ($translatable) extends \Brackets\Translatable\Http\Requests\TranslatableFormRequest {
+        $request = new class ($translatable) extends TranslatableFormRequest {
             public function untranslatableRules(): array
             {
                 return [
@@ -64,7 +65,7 @@ final class RulesTest extends TestCase
     public function testRulesReturnsEmptyWhenNoRulesDefined(): void
     {
         $translatable = $this->app->make(Translatable::class);
-        $request = new \Brackets\Translatable\Http\Requests\TranslatableFormRequest($translatable);
+        $request = new TranslatableFormRequest($translatable);
 
         self::assertEquals([], $request->rules());
     }
