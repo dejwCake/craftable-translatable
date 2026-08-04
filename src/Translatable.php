@@ -19,7 +19,7 @@ final readonly class Translatable
     public function getLocales(): Collection
     {
         return (new Collection((array) $this->config->get('translatable.locales')))->map(
-            static fn ($val, $key) => is_array($val) ? $key : $val,
+            static fn (mixed $val, int|string $key) => is_array($val) ? $key : $val,
         );
     }
 }

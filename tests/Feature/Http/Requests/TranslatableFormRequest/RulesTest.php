@@ -7,6 +7,8 @@ namespace Brackets\Translatable\Tests\Feature\Http\Requests\TranslatableFormRequ
 use Brackets\Translatable\Http\Requests\TranslatableFormRequest;
 use Brackets\Translatable\Tests\TestCase;
 use Brackets\Translatable\Translatable;
+use Illuminate\Support\Collection;
+use Override;
 
 final class RulesTest extends TestCase
 {
@@ -59,6 +61,33 @@ final class RulesTest extends TestCase
 
         self::assertEquals([
             'published_at' => ['required', 'datetime'],
+        ], $request->rules());
+    }
+
+    public function testRulesReplacesRequiredWithNullableInStringRulesForNonRequiredLocales(): void
+    {
+        $translatable = $this->app->make(Translatable::class);
+        $request = new class ($translatable) extends TranslatableFormRequest {
+            /** @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter */
+            #[Override]
+            public function translatableRules(string $locale): array
+            {
+                return [
+                    'title' => 'required|string',
+                ];
+            }
+
+            #[Override]
+            public function defineRequiredLocales(): Collection
+            {
+                return new Collection(['en', 'de']);
+            }
+        };
+
+        self::assertEquals([
+            'title.en' => 'required|string',
+            'title.de' => 'required|string',
+            'title.fr' => 'nullable|string',
         ], $request->rules());
     }
 

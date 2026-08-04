@@ -60,7 +60,7 @@ trait HasTranslations
     {
         $array = parent::toArray();
         $arrayTranslatable = (new Collection($this->getTranslatableAttributes()))->mapWithKeys(
-            fn ($attribute) => [$attribute => $this->getAttributeValue($attribute)],
+            fn (string $attribute) => [$attribute => $this->getAttributeValue($attribute)],
         );
 
         return array_merge($array, $arrayTranslatable->toArray());

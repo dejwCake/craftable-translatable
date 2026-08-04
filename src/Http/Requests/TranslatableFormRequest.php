@@ -41,16 +41,18 @@ class TranslatableFormRequest extends FormRequest
     {
         $standardRules = new Collection($this->untranslatableRules());
 
-        $rules = $this->prepareLocalesForRules()->flatMap(fn ($locale) => (new Collection(
+        $rules = $this->prepareLocalesForRules()->flatMap(fn (array $locale) => (new Collection(
             $this->translatableRules($locale['locale']),
-        ))->mapWithKeys(static function ($rule, $ruleKey) use ($locale) {
+        ))->mapWithKeys(static function (array|string $rule, int|string $ruleKey) use ($locale) {
             if (!$locale['required']) {
                 // TODO add support for rules defined via custom Rule classes
 
-                $key = array_search('required', $rule, true);
-                if (is_array($rule) && $key !== false) {
-                    unset($rule[$key]);
-                    array_push($rule, 'nullable');
+                if (is_array($rule)) {
+                    $key = array_search('required', $rule, true);
+                    if ($key !== false) {
+                        unset($rule[$key]);
+                        array_push($rule, 'nullable');
+                    }
                 } elseif (is_string($rule)) {
                     $rule = str_replace('required', 'nullable', $rule);
                 }
@@ -83,7 +85,7 @@ class TranslatableFormRequest extends FormRequest
     {
         $required = $this->defineRequiredLocales();
 
-        return $this->translatable->getLocales()->map(static fn ($locale) => [
+        return $this->translatable->getLocales()->map(static fn (string $locale) => [
                 'locale' => $locale,
                 'required' => $required->contains($locale),
             ]);
