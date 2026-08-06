@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Brackets\Translatable\Traits;
 
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Support\Collection;
 use Override;
@@ -47,7 +49,7 @@ trait HasTranslations
      */
     public function getLocale(): string
     {
-        return $this->locale ?? app()->getLocale();
+        return $this->locale ?? Container::getInstance()->make(Application::class)->getLocale();
     }
 
     /**
