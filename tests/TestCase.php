@@ -75,11 +75,11 @@ abstract class TestCase extends Orchestra
                 'schema' => 'public',
                 'sslmode' => 'prefer',
             ]);
-        } else if (Env::get('DB_CONNECTION') === 'mysql') {
-            $config->set('database.default', 'mysql');
-            $config->set('database.connections.mysql', [
-                'driver' => 'mysql',
-                'host' => 'mysql',
+        } else if (Env::get('DB_CONNECTION') === 'mariadb') {
+            $config->set('database.default', 'mariadb');
+            $config->set('database.connections.mariadb', [
+                'driver' => 'mariadb',
+                'host' => 'mariadb',
                 'port' => '3306',
                 'database' => Env::get('DB_DATABASE', 'laravel'),
                 'username' => Env::get('DB_USERNAME', 'root'),
