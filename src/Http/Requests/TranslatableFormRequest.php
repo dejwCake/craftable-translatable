@@ -25,6 +25,28 @@ class TranslatableFormRequest extends FormRequest
     }
 
     /**
+     * The rule of a locale that is not required: `required` becomes `nullable`.
+     *
+     * @param array<int|string, object|string>|string $rule
+     * @return array<int|string, object|string>|string
+     */
+    private static function optionalRule(array|string $rule): array|string
+    {
+        // TODO add support for rules defined via custom Rule classes
+        if (is_string($rule)) {
+            return str_replace('required', 'nullable', $rule);
+        }
+
+        $key = array_search('required', $rule, true);
+        if ($key !== false) {
+            unset($rule[$key]);
+            $rule[] = 'nullable';
+        }
+
+        return $rule;
+    }
+
+    /**
      * Define what locales should be required in store/update requests
      *
      * By default, all locales are required
@@ -44,24 +66,11 @@ class TranslatableFormRequest extends FormRequest
         $rules = $this->prepareLocalesForRules()->flatMap(fn (array $locale) => (new Collection(
             $this->translatableRules($locale['locale']),
         ))->mapWithKeys(static function (array|string $rule, int|string $ruleKey) use ($locale) {
-            if (!$locale['required']) {
-                // TODO add support for rules defined via custom Rule classes
+            $rule = $locale['required'] ? $rule : self::optionalRule($rule);
 
-                if (is_array($rule)) {
-                    $key = array_search('required', $rule, true);
-                    if ($key !== false) {
-                        unset($rule[$key]);
-                        array_push($rule, 'nullable');
-                    }
-                } elseif (is_string($rule)) {
-                    $rule = str_replace('required', 'nullable', $rule);
-                }
-            }
-
-                return [
-                    sprintf('%s.%s', $ruleKey, $locale['locale'])
-                        => is_array($rule) ? array_values($rule) : $rule,
-                ];
+            return [
+                sprintf('%s.%s', $ruleKey, $locale['locale']) => is_array($rule) ? array_values($rule) : $rule,
+            ];
         }))->merge($standardRules);
 
         return $rules->toArray();
